@@ -3,6 +3,7 @@ Package.describe({
   summary: 'Value Objects for numeral domains.',
   name: 'space:vo-numeral',
   version: '0.1.0',
+  git: 'https://github.com/meteor-space/vo-numeral.git'
 });
 
 Package.onUse(function(api) {
