@@ -28,6 +28,7 @@ Package.onTest(function(api) {
 
   api.use([
     'check',
+    'ejson',
     'space:vo-numeral',
     'practicalmeteor:munit@2.1.5',
     'space:testing@1.3.0',
