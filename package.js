@@ -11,7 +11,7 @@ Package.onUse(function(api) {
 
   api.use([
     'check',
-    'space:messaging@1.6.0'
+    'space:messaging@2.0.0'
   ]);
 
   api.add_files([
