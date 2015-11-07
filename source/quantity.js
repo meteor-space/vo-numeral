@@ -28,6 +28,21 @@ Quantity = Space.domain.ValueObject.extend('Quantity', {
     return "" + this.value;
   },
 
+  isMore: function(other) {
+    otherValue = (other instanceof Quantity) ? other.value : other;
+    return this.value > otherValue;
+  },
+
+  isLess: function(other) {
+    otherValue = (other instanceof Quantity) ? other.value : other;
+    return this.value < otherValue;
+  },
+
+  add: function(other) {
+    if(!(other instanceof Quantity)) {
+      other = new Quantity(other);
+    }
+    return new Quantity(this.value + other.value);
   }
 
 });

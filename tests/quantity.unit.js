@@ -40,16 +40,77 @@ describe("Quantity", function() {
     });
   });
 
-  // =============== EQUALITY ================ //
+  // =============== COMPARISON ================ //
 
-  describe('equality', function() {
+  describe('comparison', function() {
 
-    it('returns true for same values', function() {
-      expect(new Quantity(1).equals(new Quantity(1))).to.be.true;
+    describe('equality', function() {
+
+      it('returns true for same values', function() {
+        expect(new Quantity(1).equals(new Quantity(1))).to.be.true;
+      });
+
+      it('returns false for different values', function() {
+        expect(new Quantity(2).equals(new Quantity(6))).to.be.false;
+      });
+
     });
 
-    it('returns false for different values', function() {
-      expect(new Quantity(2).equals(new Quantity(6))).to.be.false;
+    describe('isMore', function() {
+
+      it('compares two quantities', function() {
+        expect(new Quantity(2).isMore(new Quantity(1))).to.be.true;
+        expect(new Quantity(1).isMore(new Quantity(2))).to.be.false;
+      });
+
+      it('allows comparison with plain numbers', function() {
+        expect(new Quantity(2).isMore(1)).to.be.true;
+        expect(new Quantity(1).isMore(2)).to.be.false;
+      });
+
+    });
+
+    describe('isLess', function() {
+
+      it('compares two quantities', function() {
+        expect(new Quantity(1).isLess(new Quantity(2))).to.be.true;
+        expect(new Quantity(2).isLess(new Quantity(1))).to.be.false;
+      });
+
+      it('allows comparison with plain numbers', function() {
+        expect(new Quantity(1).isLess(2)).to.be.true;
+        expect(new Quantity(2).isLess(1)).to.be.false;
+      });
+
+    });
+
+  });
+
+  // =============== MATH ================ //
+
+  describe('math', function() {
+
+    describe("adding to quantities", function () {
+
+      it("returns a new quantity with the sum of both", function () {
+        sum = new Quantity(1).add(new Quantity(2));
+        expect(sum).to.be.instanceof(Quantity);
+        expect(sum.value).to.equal(3);
+      });
+
+      it("also handles adding plain values", function () {
+        sum = new Quantity(1).add(2);
+        expect(sum).to.be.instanceof(Quantity);
+        expect(sum.value).to.equal(3);
+      });
+
+      it("throws error if plain number is not a valid quantity", function () {
+        function addInvalidQuantity() {
+          new Quantity(1).add(-1);
+        }
+        expect(addInvalidQuantity).to.throw(Quantity.INVALID_TYPE_ERROR);
+      });
+
     });
 
   });
