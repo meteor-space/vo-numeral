@@ -23,7 +23,7 @@ describe("Quantity", function() {
 
       expect(function() {
         new Quantity(-1);
-      }).to["throw"](Quantity.INVALID_RANGE_ERROR);
+      }).to.throw(Quantity.INVALID_RANGE_ERROR);
 
     });
 
@@ -31,11 +31,11 @@ describe("Quantity", function() {
 
       expect(function() {
         new Quantity(20.50);
-      }).to["throw"](Quantity.INVALID_TYPE_ERROR);
+      }).to.throw(Quantity.INVALID_TYPE_ERROR);
 
       expect(function() {
         new Quantity("5");
-      }).to["throw"](Quantity.INVALID_TYPE_ERROR);
+      }).to.throw(Quantity.INVALID_TYPE_ERROR);
 
     });
   });
