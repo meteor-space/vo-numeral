@@ -2,7 +2,7 @@
  * Quantity: A ValueObject that represents an a positive integer value.
  * EJSON compatible, can be transparently used in Meteor.methods and MongoDB.
  */
-Quantity = Space.messaging.Serializable.extend('Quantity', {
+Quantity = Space.domain.ValueObject.extend('Quantity', {
 
   // Create with either `new Quantity(1)` or `new Quantity({ value: 1 })`
   Constructor: function(data) {
@@ -17,23 +17,23 @@ Quantity = Space.messaging.Serializable.extend('Quantity', {
     Object.freeze(this);
   },
 
+  // Defines the EJSON fields that are automatically serialized
+  fields: function() {
+    return {
+      value: Match.Integer
+    };
+  },
+
   toString: function() {
     return "" + this.value;
   },
 
-  equals: function(other) {
-    return (other instanceof Quantity) && other.value === this.value;
   }
 
 });
 
 // Register EJSON type
 Quantity.type('Quantity');
-
-// Defines the EJSON fields that are automatically serialized
-Quantity.fields = {
-  value: Match.Integer
-};
 
 Quantity.ERRORS = {
   invalidType: 'Quantity must be an integer.',
