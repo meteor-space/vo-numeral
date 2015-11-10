@@ -13,7 +13,13 @@ Quantity = Space.domain.ValueObject.extend('Quantity', {
       throw new Error(Quantity.ERRORS.invalidRange);
     }
 
-    Space.messaging.Serializable.call(this, { value: value });
+    try {
+      Space.messaging.Serializable.call(this, { value: value });
+    }
+    catch(e) {
+      throw new Error(Quantity.ERRORS.invalidType);
+    }
+    
     Object.freeze(this);
   },
 
@@ -41,6 +47,13 @@ Quantity = Space.domain.ValueObject.extend('Quantity', {
       other = new Quantity(other);
     }
     return new Quantity(this.value + other.value);
+  },
+
+  substract: function(other) {
+    if(!(other instanceof Quantity)) {
+      other = new Quantity(other);
+    }
+    return new Quantity(this.value - other.value);
   },
 
   delta: function(other) {

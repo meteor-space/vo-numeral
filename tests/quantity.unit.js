@@ -23,7 +23,7 @@ describe("Quantity", function() {
 
       expect(function() {
         new Quantity(-1);
-      }).to.throw(Quantity.INVALID_RANGE_ERROR);
+      }).to.throw(Quantity.ERRORS.invalidRange);
 
     });
 
@@ -31,11 +31,11 @@ describe("Quantity", function() {
 
       expect(function() {
         new Quantity(20.50);
-      }).to.throw(Quantity.INVALID_TYPE_ERROR);
+      }).to.throw(Quantity.ERRORS.invalidType);
 
       expect(function() {
         new Quantity("5");
-      }).to.throw(Quantity.INVALID_TYPE_ERROR);
+      }).to.throw(Quantity.ERRORS.invalidType);
 
     });
   });
@@ -108,7 +108,37 @@ describe("Quantity", function() {
         function addInvalidQuantity() {
           new Quantity(1).add(-1);
         }
-        expect(addInvalidQuantity).to.throw(Quantity.INVALID_TYPE_ERROR);
+        expect(addInvalidQuantity).to.throw(Quantity.ERRORS.invalidRange);
+      });
+
+    });
+
+    describe("substracting from quantities", function () {
+
+      it("returns a new quantity with the difference of both", function () {
+        difference = new Quantity(2).substract(new Quantity(1));
+        expect(difference).to.be.instanceof(Quantity);
+        expect(difference.value).to.equal(1);
+      });
+
+      it("also handles substracting plain values", function () {
+        difference = new Quantity(2).substract(1);
+        expect(difference).to.be.instanceof(Quantity);
+        expect(difference.value).to.equal(1);
+      });
+
+      it("throws error if plain number is not a valid quantity", function () {
+        function addInvalidQuantity() {
+          new Quantity(2).substract(-1);
+        }
+        expect(addInvalidQuantity).to.throw(Quantity.ERRORS.invalidRange);
+      });
+
+      it("throws error if resulting number is not a valid quantity", function () {
+        function calcInvalidQuantity() {
+          new Quantity(1).substract(2);
+        }
+        expect(calcInvalidQuantity).to.throw(Quantity.ERRORS.invalidRange);
       });
 
     });
