@@ -113,6 +113,20 @@ describe("Quantity", function() {
 
     });
 
+    describe("calculating the delta between quantities", function () {
+
+      it("returns the difference", function () {
+        expect(new Quantity(2).delta(new Quantity(1))).to.equal(1);
+        expect(new Quantity(1).delta(new Quantity(3))).to.equal(-2);
+      });
+
+      it("also handles plain numbers", function () {
+        expect(new Quantity(2).delta(1)).to.equal(1);
+        expect(new Quantity(1).delta(3)).to.equal(-2);
+      });
+
+    });
+
   });
 
   // =============== IMMUTABILITY ================ //
