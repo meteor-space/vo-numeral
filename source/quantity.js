@@ -6,20 +6,16 @@ Quantity = Space.domain.ValueObject.extend('Quantity', {
 
   // Create with either `new Quantity(1)` or `new Quantity({ value: 1 })`
   Constructor: function(data) {
-
-    var value = (data && data.value) ? data.value : data;
-
-    if(value < 0) {
-      throw new Error(Quantity.ERRORS.invalidRange);
-    }
-
+    let value = (data && data.value) ? data.value : data;
     try {
-      Space.messaging.Serializable.call(this, { value: value });
-    }
-    catch(e) {
+      Quantity.__super__.constructor.call(this, { value });
+    } catch (e) {
+      console.log(e);
       throw new Error(Quantity.ERRORS.invalidType);
     }
-    
+    if (value < 0) {
+      throw new Error(Quantity.ERRORS.invalidRange);
+    }
     Object.freeze(this);
   },
 
