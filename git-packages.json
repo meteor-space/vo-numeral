@@ -10,5 +10,5 @@
   "space:domain": {
     "git":"https://github.com/meteor-space/domain.git",
     "version": "develop"
-  },
+  }
 }
