@@ -10,7 +10,6 @@ Quantity = Space.domain.ValueObject.extend('Quantity', {
     try {
       Quantity.__super__.constructor.call(this, { value });
     } catch (e) {
-      console.log(e);
       throw new Error(Quantity.ERRORS.invalidType);
     }
     if (value < 0) {
@@ -39,17 +38,19 @@ Quantity = Space.domain.ValueObject.extend('Quantity', {
   },
 
   add: function(other) {
-    if(!(other instanceof Quantity)) {
-      other = new Quantity(other);
+    let toAdd = other;
+    if (!(toAdd instanceof Quantity)) {
+      toAdd = new Quantity(other);
     }
-    return new Quantity(this.value + other.value);
+    return new Quantity(this.value + toAdd.value);
   },
 
   substract: function(other) {
-    if(!(other instanceof Quantity)) {
-      other = new Quantity(other);
+    let toSubstract = other;
+    if (!(toSubstract instanceof Quantity)) {
+      toSubstract = new Quantity(other);
     }
-    return new Quantity(this.value - other.value);
+    return new Quantity(this.value - toSubstract.value);
   },
 
   delta: function(other) {

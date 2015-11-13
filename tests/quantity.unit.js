@@ -5,7 +5,7 @@ describe("Quantity", function() {
   });
 
   it('is serializable', function() {
-    var copy = EJSON.parse(EJSON.stringify(this.quantity));
+    let copy = EJSON.parse(EJSON.stringify(this.quantity));
     expect(copy.equals(this.quantity)).to.be.true;
   });
 
@@ -22,7 +22,7 @@ describe("Quantity", function() {
     it('does not allow values outside the boundaries', function() {
 
       expect(function() {
-        new Quantity(-1);
+        return new Quantity(-1);
       }).to.throw(Quantity.ERRORS.invalidRange);
 
     });
@@ -30,11 +30,11 @@ describe("Quantity", function() {
     it('only takes integer values', function() {
 
       expect(function() {
-        new Quantity(20.50);
+        return new Quantity(20.50);
       }).to.throw(Quantity.ERRORS.invalidType);
 
       expect(function() {
-        new Quantity("5");
+        return new Quantity("5");
       }).to.throw(Quantity.ERRORS.invalidType);
 
     });
@@ -90,67 +90,67 @@ describe("Quantity", function() {
 
   describe('math', function() {
 
-    describe("adding to quantities", function () {
+    describe("adding to quantities", function() {
 
-      it("returns a new quantity with the sum of both", function () {
+      it("returns a new quantity with the sum of both", function() {
         sum = new Quantity(1).add(new Quantity(2));
         expect(sum).to.be.instanceof(Quantity);
         expect(sum.value).to.equal(3);
       });
 
-      it("also handles adding plain values", function () {
+      it("also handles adding plain values", function() {
         sum = new Quantity(1).add(2);
         expect(sum).to.be.instanceof(Quantity);
         expect(sum.value).to.equal(3);
       });
 
-      it("throws error if plain number is not a valid quantity", function () {
-        function addInvalidQuantity() {
-          new Quantity(1).add(-1);
-        }
+      it("throws error if plain number is not a valid quantity", function() {
+        let addInvalidQuantity = function() {
+          return new Quantity(1).add(-1);
+        };
         expect(addInvalidQuantity).to.throw(Quantity.ERRORS.invalidRange);
       });
 
     });
 
-    describe("substracting from quantities", function () {
+    describe("substracting from quantities", function() {
 
-      it("returns a new quantity with the difference of both", function () {
+      it("returns a new quantity with the difference of both", function() {
         difference = new Quantity(2).substract(new Quantity(1));
         expect(difference).to.be.instanceof(Quantity);
         expect(difference.value).to.equal(1);
       });
 
-      it("also handles substracting plain values", function () {
+      it("also handles substracting plain values", function() {
         difference = new Quantity(2).substract(1);
         expect(difference).to.be.instanceof(Quantity);
         expect(difference.value).to.equal(1);
       });
 
-      it("throws error if plain number is not a valid quantity", function () {
-        function addInvalidQuantity() {
+      it("throws error if plain number is not a valid quantity", function() {
+        let addInvalidQuantity = function() {
           new Quantity(2).substract(-1);
-        }
+        };
         expect(addInvalidQuantity).to.throw(Quantity.ERRORS.invalidRange);
       });
 
-      it("throws error if resulting number is not a valid quantity", function () {
-        function calcInvalidQuantity() {
+      it("throws error if resulting number is not a valid quantity", function() {
+        let calcInvalidQuantity = function() {
           new Quantity(1).substract(2);
-        }
+        };
         expect(calcInvalidQuantity).to.throw(Quantity.ERRORS.invalidRange);
       });
 
     });
 
-    describe("calculating the delta between quantities", function () {
+    describe("calculating the delta between quantities", function() {
 
-      it("returns the difference", function () {
+      it("returns the difference", function() {
         expect(new Quantity(2).delta(new Quantity(1))).to.equal(1);
         expect(new Quantity(1).delta(new Quantity(3))).to.equal(-2);
       });
 
-      it("also handles plain numbers", function () {
+      it("also handles plain numbers", function() {
         expect(new Quantity(2).delta(1)).to.equal(1);
         expect(new Quantity(1).delta(3)).to.equal(-2);
       });
