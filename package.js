@@ -13,11 +13,13 @@ Package.onUse(function(api) {
 
   api.use([
     'check',
-    'space:messaging@2.0.0'
+    'ecmascript',
+    'space:messaging@2.0.0',
+    'space:domain@0.1.0'
   ]);
 
   api.add_files([
-    'source/quantity.js',
+    'source/quantity.js'
   ]);
 
   api.export('Quantity');
@@ -29,13 +31,14 @@ Package.onTest(function(api) {
   api.use([
     'check',
     'ejson',
+    'ecmascript',
     'space:vo-numeral',
     'practicalmeteor:munit@2.1.5',
-    'space:testing@1.3.0',
+    'space:testing@1.3.0'
   ]);
 
   api.add_files([
-    'tests/quantity.unit.js',
+    'tests/quantity.unit.js'
   ]);
 
 });
