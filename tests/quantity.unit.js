@@ -13,18 +13,17 @@ describe("Quantity", function() {
 
   describe('construction', function() {
 
-    it('takes a positive integer bigger than 0', function() {
+    it('takes a positive integer bigger or equal to 0', function() {
+      expect(new Quantity(0).value).to.equal(0);
       expect(new Quantity(1).value).to.equal(1);
       expect(new Quantity(20).value).to.equal(20);
       expect(new Quantity(9999).value).to.equal(9999);
     });
 
     it('does not allow values outside the boundaries', function() {
-
       expect(function() {
         return new Quantity(-1);
       }).to.throw(Quantity.ERRORS.invalidRange);
-
     });
 
     it('only takes integer values', function() {
