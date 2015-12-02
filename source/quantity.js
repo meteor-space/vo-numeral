@@ -6,7 +6,7 @@ Quantity = Space.domain.ValueObject.extend('Quantity', {
 
   // Create with either `new Quantity(1)` or `new Quantity({ value: 1 })`
   Constructor: function(data) {
-    let value = (data && data.value) ? data.value : data;
+    let value = (data && data.value !== undefined) ? data.value : data;
     try {
       Quantity.__super__.constructor.call(this, { value });
     } catch (e) {
