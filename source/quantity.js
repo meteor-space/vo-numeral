@@ -63,8 +63,6 @@ Quantity = Space.domain.ValueObject.extend('Quantity', {
 
 });
 
-Quantity.type('Quantity');
-
 Quantity.ERRORS = {
   invalidType: 'Quantity must be an integer.',
   invalidRange: 'Quantity must be bigger than 0.'
