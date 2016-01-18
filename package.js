@@ -33,7 +33,7 @@ Package.onTest(function(api) {
     'ecmascript',
     'space:vo-numeral',
     'practicalmeteor:munit@2.1.5',
-    'space:testing@1.3.0'
+    'space:testing@2.0.1'
   ]);
 
   api.add_files([
