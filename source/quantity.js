@@ -5,7 +5,7 @@
 Quantity = Space.domain.ValueObject.extend('Quantity', {
 
   // Create with either `new Quantity(1)` or `new Quantity({ value: 1 })`
-  Constructor: function(data) {
+  Constructor(data) {
     let value = (data && data.value !== undefined) ? data.value : data;
     try {
       Quantity.__super__.constructor.call(this, { value });
@@ -19,25 +19,25 @@ Quantity = Space.domain.ValueObject.extend('Quantity', {
   },
 
   // Defines the EJSON fields that are automatically serialized
-  fields: function() {
+  fields() {
     return {
       value: Match.Integer
     };
   },
 
-  toString: function() {
+  toString() {
     return "" + this.value;
   },
 
-  isMore: function(other) {
+  isMore(other) {
     return this.value > this._getCleanValue(other);
   },
 
-  isLess: function(other) {
+  isLess(other) {
     return this.value < this._getCleanValue(other);
   },
 
-  add: function(other) {
+  add(other) {
     let toAdd = other;
     if (!(toAdd instanceof Quantity)) {
       toAdd = new Quantity(other);
@@ -45,7 +45,7 @@ Quantity = Space.domain.ValueObject.extend('Quantity', {
     return new Quantity(this.value + toAdd.value);
   },
 
-  substract: function(other) {
+  substract(other) {
     let toSubstract = other;
     if (!(toSubstract instanceof Quantity)) {
       toSubstract = new Quantity(other);
@@ -53,17 +53,16 @@ Quantity = Space.domain.ValueObject.extend('Quantity', {
     return new Quantity(this.value - toSubstract.value);
   },
 
-  delta: function(other) {
+  delta(other) {
     return this.value - this._getCleanValue(other);
   },
 
-  _getCleanValue: function(other) {
+  _getCleanValue(other) {
     return (other instanceof Quantity) ? other.value : other;
   }
 
 });
 
-// Register EJSON type
 Quantity.type('Quantity');
 
 Quantity.ERRORS = {
