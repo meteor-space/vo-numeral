@@ -14,7 +14,6 @@ Package.onUse(function(api) {
   api.use([
     'check',
     'ecmascript',
-    'space:messaging@2.0.0',
     'space:domain@0.1.0'
   ]);
 
@@ -34,7 +33,7 @@ Package.onTest(function(api) {
     'ecmascript',
     'space:vo-numeral',
     'practicalmeteor:munit@2.1.5',
-    'space:testing@1.3.0'
+    'space:testing@2.0.1'
   ]);
 
   api.add_files([
