@@ -2,7 +2,7 @@
 Package.describe({
   name: 'space:vo-numeral',
   summary: 'Value Objects for numeral domains.',
-  version: '0.1.0',
+  version: '0.2.0',
   git: 'https://github.com/meteor-space/vo-numeral.git',
   documentation: 'README.md'
 });
@@ -14,7 +14,7 @@ Package.onUse(function(api) {
   api.use([
     'check',
     'ecmascript',
-    'space:domain@0.1.0'
+    'space:domain@0.2.1'
   ]);
 
   api.add_files([
@@ -33,8 +33,7 @@ Package.onTest(function(api) {
     'ecmascript',
     'space:vo-numeral',
     'practicalmeteor:munit@2.1.5',
-    'space:testing@3.0.1',
-    'space:testing-messaging@3.0.0'
+    'space:testing@3.0.1'
   ]);
 
   api.add_files([
