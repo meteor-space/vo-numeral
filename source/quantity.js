@@ -45,12 +45,12 @@ Quantity = Space.domain.ValueObject.extend('Quantity', {
     return new Quantity(this.value + toAdd.value);
   },
 
-  substract(other) {
-    let toSubstract = other;
-    if (!(toSubstract instanceof Quantity)) {
-      toSubstract = new Quantity(other);
+  subtract(other) {
+    let toSubtract = other;
+    if (!(toSubtract instanceof Quantity)) {
+      toSubtract = new Quantity(other);
     }
-    return new Quantity(this.value - toSubstract.value);
+    return new Quantity(this.value - toSubtract.value);
   },
 
   delta(other) {
