@@ -1,7 +1,7 @@
 Changelog
 =========
 
-## 0.3.0
+## vNext
 ### Bug fixes
 - Fixes typos from `substract` to `subtract`
 
