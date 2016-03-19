@@ -112,30 +112,30 @@ describe("Quantity", function() {
 
     });
 
-    describe("substracting from quantities", function() {
+    describe("subtracting from quantities", function() {
 
       it("returns a new quantity with the difference of both", function() {
-        difference = new Quantity(2).substract(new Quantity(1));
+        difference = new Quantity(2).subtract(new Quantity(1));
         expect(difference).to.be.instanceof(Quantity);
         expect(difference.value).to.equal(1);
       });
 
-      it("also handles substracting plain values", function() {
-        difference = new Quantity(2).substract(1);
+      it("also handles subtracting plain values", function() {
+        difference = new Quantity(2).subtract(1);
         expect(difference).to.be.instanceof(Quantity);
         expect(difference.value).to.equal(1);
       });
 
       it("throws error if plain number is not a valid quantity", function() {
         let addInvalidQuantity = function() {
-          new Quantity(2).substract(-1);
+          new Quantity(2).subtract(-1);
         };
         expect(addInvalidQuantity).to.throw(Quantity.ERRORS.invalidRange);
       });
 
       it("throws error if resulting number is not a valid quantity", function() {
         let calcInvalidQuantity = function() {
-          new Quantity(1).substract(2);
+          new Quantity(1).subtract(2);
         };
         expect(calcInvalidQuantity).to.throw(Quantity.ERRORS.invalidRange);
       });
